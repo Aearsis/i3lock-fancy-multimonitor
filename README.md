@@ -30,6 +30,15 @@ echo "bindsym \$mod+p exec /home/<your username>/.i3/i3lock-fancy-multimonitor/l
 
 Now reload the i3 configuration file. By default, the key binding is `$mod+Shift+c`.
 
+To run as screensaver, combine with `xss-lock`, but then you have to pass `--nofork` to i3lock:
+
+```
+# .xprofile
+
+xss-lock -- i3lock-fancy-multimonitor/lock --nofork &
+
+```
+
 ## Command line parameters
 
 `-n` or `--no-text`: hide the "Type password to unlock" text.
