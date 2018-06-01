@@ -48,6 +48,12 @@ do
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
+#Make sure we won't leave debris
+cleanup() {
+	rm -f $OUTPUT_IMAGE
+}
+trap cleanup EXIT
+
 #Take screenshot:
 scrot -z $OUTPUT_IMAGE
 
@@ -99,6 +105,3 @@ eval convert $PARAMS
 
 #Lock the screen:
 i3lock -i $OUTPUT_IMAGE -t
-
-#Remove the generated image:
-rm $OUTPUT_IMAGE
