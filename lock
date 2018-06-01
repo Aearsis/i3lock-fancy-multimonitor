@@ -29,21 +29,18 @@ do
   -b=*|--blur=*)
     VAL="${i#*=}"
     BLURTYPE=(${VAL//=/ }) 
-    shift
     ;;
   -n|--no-text)
     DISPLAY_TEXT=false
-    shift # past argument
     ;;
   -p|--pixelate)
     PIXELATE=true
-    shift # past argument
     ;;
   *)    # unknown option
     POSITIONAL+=("$1") # save it in an array for later
-    shift # past argument
     ;;
   esac
+  shift # past argument
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
