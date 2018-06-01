@@ -22,8 +22,9 @@ do
   -h|--help)
     echo "lock: Syntax: lock [-n|--no-text] [-p|--pixelate] [-b=VAL|--blur=VAL]"
     echo "for correct blur values, read: http://www.imagemagick.org/Usage/blur/#blur_args"
+    echo "Unrecognized arguments are passed to i3lock verbatim."
+    i3lock -h
     exit
-    shift
     ;;
   -b=*|--blur=*)
     VAL="${i#*=}"
@@ -39,8 +40,6 @@ do
     shift # past argument
     ;;
   *)    # unknown option
-    echo "unknown option: $i"
-    exit
     POSITIONAL+=("$1") # save it in an array for later
     shift # past argument
     ;;
@@ -104,4 +103,4 @@ fi
 eval convert $PARAMS
 
 #Lock the screen:
-i3lock -i $OUTPUT_IMAGE -t
+i3lock -i $OUTPUT_IMAGE -t "$@"
